@@ -4,6 +4,11 @@
     https://api.github.com/users/<your name>
 */
 
+
+axios.get('https://api.github.com/users/impulse2020')
+  .then(function (response) {
+    console.log(response);
+  });
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -49,6 +54,55 @@ const followersArray = [];
       </div>
     </div>
 */
+function cardMaker(object){
+  let card = document.createElement('div');
+  let picture = document.createElement('img');
+  let cardInfo = document.createElement('div');
+  let name = document.createElement('h3');
+  let username = document.createElement('p');
+  let location = document.createElement('p');
+  let profile = document.createElement('p');
+  let followers = document.createElement('p');
+  let following = document.createElement('p');
+  let bio = document.createElement('p');
+  // creates HTML elements
+  card.appendChild(picture);
+  card.appendChild(cardInfo);
+  cardInfo.appendChild(name);
+  cardInfo.appendChild(username);
+  cardInfo.appendChild(location);
+  cardInfo.appendChild(profile);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(bio);
+  //structures the component
+  card.classList.add('card')
+  cardInfo.classList.add('card-info')
+  name.classList.add('name')
+  username.classList.add('username')
+  // sets the classes for components
+  picture.src = object.data.avatar_url;
+  name.textContent = object.data.name;
+  username.textContent = object.data.login;
+  location.textContent = object.data.location;
+  profile.textContent = object.data.html_url;
+  followers.textContent = object.data.followers_url;
+  following.textContent = object.data.following_url;
+// sets the text content for component
+  return card;
+ // returns the component 
+}
+
+axios.get('https://api.github.com/users/impulse2020')
+  .then(function(response){
+  let card = cardMaker(response);
+  document.body.appendChild(card)
+  });
+
+
+
+
+
 
 /*
   List of LS Instructors Github username's:
