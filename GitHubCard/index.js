@@ -86,11 +86,11 @@ function cardMaker(object){
   username.textContent = object.data.login;
   location.textContent = object.data.location;
   profile.textContent = object.data.html_url;
-  followers.textContent = object.data.followers_url;
-  following.textContent = object.data.following_url;
-// sets the text content for component
-  return card;
- // returns the component 
+  followers.textContent = `Followers: ${object.data.followers}`;
+  following.textContent = `Following: ${object.data.following}`;
+  // sets the text content for component
+    return card;
+  // returns the component 
 }
 
 axios.get('https://api.github.com/users/impulse2020')
