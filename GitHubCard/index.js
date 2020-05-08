@@ -33,7 +33,7 @@ axios.get('https://api.github.com/users/impulse2020')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['mrzacsmith','drew-ross'];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -97,6 +97,14 @@ axios.get('https://api.github.com/users/impulse2020')
   .then(function(response){
   let card = cardMaker(response);
   document.body.appendChild(card)
+  console.log(response);
+  followersArray.forEach(element=>{
+   axios.get(`https://api.github.com/users/${element}`)
+      .then(function(response){
+        let followerCard = cardMaker(response);
+        document.body.appendChild(followerCard)
+      })
+  })
   });
 
 
